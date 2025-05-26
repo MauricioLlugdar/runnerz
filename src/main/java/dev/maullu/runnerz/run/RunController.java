@@ -36,4 +36,16 @@ public class RunController {
     void addRun(@RequestBody Run run){
         runRepository.addRun(run);
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping("/{id}")
+    void updateRun(@RequestBody Run run, @PathVariable Integer id){
+        runRepository.updateRun(run, id);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    void deleteRun(@PathVariable Integer id){
+        runRepository.deleteRun(id);
+    }
 }
