@@ -26,7 +26,7 @@ public class RunController {
     Run findById(@PathVariable Integer id){
         Optional<Run> run = runRepository.findById(id);
         if(run.isEmpty()){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND); // id run not found
+            throw new RunNotFoundException(); // id run not found
         }
         return run.get(); // Get content of the optional
     }
