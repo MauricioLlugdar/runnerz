@@ -1,0 +1,74 @@
+{
+  "runs": [
+    {
+      "title": "Run 1",
+      "startedOn": "2023-10-01T10:00:00Z",
+      "completedOn": "2023-10-01T11:30:23Z",
+      "miles": 5.0,
+      "location": "OUTDOOR"
+    },
+    {
+      "title": "Run 2",
+      "startedOn": "2023-10-02T09:15:00Z",
+      "completedOn": "2023-10-02T10:00:00Z",
+      "miles": 3.5,
+      "location": "OUTDOOR"
+    },
+    {
+      "title": "Run 3",
+      "startedOn": "2023-10-03T08:30:00Z",
+      "completedOn": "2023-10-03T09:45:00Z",
+      "miles": 4.2,
+      "location": "INDOOR"
+    },
+    {
+      "title": "Run 4",
+      "startedOn": "2023-10-04T07:00:00Z",
+      "completedOn": "2023-10-04T08:15:00Z",
+      "miles": 6.0,
+      "location": "OUTDOOR"
+    },
+    {
+      "title": "Run 5",
+      "startedOn": "2023-10-05T06:30:00Z",
+      "completedOn": "2023-10-05T07:45:00Z",
+      "miles": 2.8,
+      "location": "INDOOR"
+    },
+    {
+      "title": "Run 6",
+      "startedOn": "2023-10-06T05:45:00Z",
+      "completedOn": "2023-10-06T06:30:00Z",
+      "miles": 4.5,
+      "location": "OUTDOOR"
+    },
+    {
+      "title": "Run 7",
+      "startedOn": "2023-10-07T04:30:00Z",
+      "completedOn": "2023-10-07T05:15:00Z",
+      "miles": 3.0,
+      "location": "INDOOR"
+    },
+    {
+      "title": "Run 8",
+      "startedOn": "2023-10-08T03:15:00Z",
+      "completedOn": "2023-10-08T04:00:00Z",
+      "miles": 5.5,
+      "location": "OUTDOOR"
+    },
+    {
+      "title": "Run 9",
+      "startedOn": "2023-10-09T02:00:00Z",
+      "completedOn": "2023-10-09T02:45:00Z",
+      "miles": 7.0,
+      "location": "OUTDOOR"
+    },
+    {
+      "title": "Run 10",
+      "startedOn": "2023-10-10T01:30:00Z",
+      "completedOn": "2023-10-10T02:15:00Z",
+      "miles": 4.8,
+      "location": "OUTDOOR"
+    }
+  ]
+}
