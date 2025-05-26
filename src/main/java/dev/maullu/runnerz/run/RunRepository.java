@@ -1,54 +1,69 @@
 package dev.maullu.runnerz.run;
 
-import jakarta.annotation.PostConstruct;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import java.util.Objects;
 import java.util.Optional;
 
 @Repository // We tell Spring to be in charge of this class
 public class RunRepository {
-    private List<Run> runs = new ArrayList<>();
 
-    List<Run> findAll(){
-        return runs;
+    private static final Logger log = LoggerFactory.getLogger(RunRepository.class); // Show in terminal logs
+    private final JdbcClient jdbcClient;
+
+    public RunRepository(JdbcClient jdbcClient){
+        this.jdbcClient = jdbcClient;
     }
 
-    Optional<Run> findById(Integer id){ // Optional is for operating w objects without having a null value present
-        return runs.stream() // Use of Streams to use methods like filter, map, etc.
-                .filter(run -> Objects.equals(run.id(), id))
-                .findFirst();
+    public List<Run> findAll(){
+        return jdbcClient.sql("SELECT * FROM run")
+                .query(Run.class) // Map the rows to a Run object
+                .list(); // Returns a list of Run objects
     }
 
-    void addRun(Run run){
-        runs.add(run);
+    public Optional<Run> findById(Integer id){
+        return jdbcClient.sql("SELECT * FROM run WHERE run.id = ?")
+                .param(id)
+                .query(Run.class)
+                .optional();
     }
 
-    void updateRun(Run run, Integer id){
-        Optional<Run> existingRun = findById(id);
-        existingRun.ifPresent(value -> runs.set(runs.indexOf(value), run));
+    public void addRun(Run run) {
+        var updated = jdbcClient.sql("INSERT INTO run (title, started_on, completed_on, miles, location) VALUES (?, ?, ?, ?, ?)")
+                .param(run.title())
+                .param(run.startedOn())
+                .param(run.completedOn())
+                .param(run.miles())
+                .param(run.location().toString())
+                .update();
+        Assert.state(updated == 1, "Failed to add a run " + run.title() );
     }
 
-    void deleteRun(Integer id){
-        runs.removeIf(run -> Objects.equals(run.id(),id));
+    public void updateRun(Run run, Integer id){
+        var updated = jdbcClient.sql("UPDATE run SET title = ?, started_on = ?, completed_on = ?, miles = ?, location = ? WHERE id = ?")
+                .param(run.title())
+                .param(run.startedOn())
+                .param(run.completedOn())
+                .param(run.miles())
+                .param(run.location().toString())
+                .param(id)
+                .update();
+        Assert.state(updated == 1, "Failed to update a run " + run.title() );
     }
 
-    @PostConstruct //Initialization in the class
-    private void init(){
-        runs.add(new Run(1,
-                "Monday Morning Run",
-                java.time.LocalDateTime.now(),
-                java.time.LocalDateTime.now().plusHours(1),
-                5,
-                Location.INDOOR));
-        runs.add(new Run(2,
-                "Evening Jog",
-                java.time.LocalDateTime.now().minusDays(1),
-                java.time.LocalDateTime.now().minusDays(1).plusHours(1),
-                3,
-                Location.OUTDOOR));
+    public void deleteRun(Integer id){
+        var deleted = jdbcClient.sql("DELETE FROM run WHERE id = ?")
+                .param(id)
+                .update();
+        Assert.state(deleted == 1, "Failed to delete a run with id=" + id );
     }
+
+
+
 }
