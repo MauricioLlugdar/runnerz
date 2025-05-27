@@ -7,17 +7,16 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Repository // We tell Spring to be in charge of this class
-public class RunRepository {
+public class JdbcClientRunRepository {
 
-    private static final Logger log = LoggerFactory.getLogger(RunRepository.class); // Show in terminal logs
+    private static final Logger log = LoggerFactory.getLogger(JdbcClientRunRepository.class); // Show in terminal logs
     private final JdbcClient jdbcClient;
 
-    public RunRepository(JdbcClient jdbcClient){
+    public JdbcClientRunRepository(JdbcClient jdbcClient){
         this.jdbcClient = jdbcClient;
     }
 
