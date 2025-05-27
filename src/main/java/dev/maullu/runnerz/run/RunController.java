@@ -3,7 +3,6 @@ package dev.maullu.runnerz.run;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,18 +34,23 @@ public class RunController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     void addRun(@Valid @RequestBody Run run){ // Valid ensures to achieve the validators in class Run
-        runRepository.addRun(run);
+        runRepository.save(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping("/{id}")
     void updateRun(@Valid @RequestBody Run run, @PathVariable Integer id){
-        runRepository.updateRun(run, id);
+        runRepository.save(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void deleteRun(@PathVariable Integer id){
-        runRepository.deleteRun(id);
+        runRepository.deleteById(id);
+    }
+
+    @GetMapping("/location/{location}")
+    List<Run> findAllByLocation(@PathVariable String location){
+        return runRepository.findAllByLocation(location);
     }
 }
