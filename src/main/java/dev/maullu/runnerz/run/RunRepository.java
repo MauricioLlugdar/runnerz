@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository // We tell Spring to be in charge of this class
-public class JdbcClientRunRepository {
+public class RunRepository {
 
-    private static final Logger log = LoggerFactory.getLogger(JdbcClientRunRepository.class); // Show in terminal logs
+    private static final Logger log = LoggerFactory.getLogger(RunRepository.class); // Show in terminal logs
     private final JdbcClient jdbcClient;
 
-    public JdbcClientRunRepository(JdbcClient jdbcClient){
+    public RunRepository(JdbcClient jdbcClient){
         this.jdbcClient = jdbcClient;
     }
 
