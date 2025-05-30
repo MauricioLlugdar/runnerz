@@ -5,7 +5,7 @@ public record User(Integer id,
                    String username,
                    String email,
                    Address address,
-                   Integer phone,
+                   String phone,
                    String website,
                    Company company) {
 }
