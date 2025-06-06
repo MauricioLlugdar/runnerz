@@ -22,10 +22,10 @@ class RunRepositoryTest {
 
     @Autowired // It tells spring to inject the class RunRepository in this test class
     RunRepository runRepository;
-    /*
+
     @Test
     void connectionEstablished(){
         assertTrue(postgreSQL.isCreated());
         assertTrue(postgreSQL.isRunning());
-    } */
+    }
 }
