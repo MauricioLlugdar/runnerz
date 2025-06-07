@@ -28,6 +28,7 @@ class RunControllerTest {
     TestRestTemplate restTemplate;
 
 
+    // It should find 10 runs in the database because we have created 10 runs with runs.json in the db
     @Test
     void shouldFindAllRuns(){
         // "/api/runs"
